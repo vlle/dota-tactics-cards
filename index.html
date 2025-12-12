@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unhinged Dota Tactics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0b0f19" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🃏</div>
+      <div class="brandText">
+        <div class="title">Unhinged Dota Tactics</div>
+        <div class="subtitle">Duo tactic cards: funny, playable, and slightly illegal</div>
+      </div>
+    </div>
+
+    <div class="headerRight">
+      <button id="btnRandom" class="btn primary">🎲 Draw a tactic</button>
+      <button id="btnSurprise" class="btn">💥 Chaos mode</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="panel controls">
+      <div class="controlRow">
+        <div class="control">
+          <label for="search">Search</label>
+          <input id="search" class="input" placeholder="e.g. smoke, tower, no wards, phoenix..." />
+        </div>
+
+        <div class="control">
+          <label for="mode">Mode</label>
+          <select id="mode" class="select">
+            <option value="any">Any</option>
+            <option value="ranked_ok">Ranked OK</option>
+            <option value="unranked_only">Unranked only</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="roles">Duo roles</label>
+          <select id="roles" class="select">
+            <option value="any">Any</option>
+            <option value="1+5">Pos 1 + Pos 5</option>
+            <option value="3+4">Pos 3 + Pos 4</option>
+            <option value="2+4">Pos 2 + Pos 4</option>
+            <option value="2+5">Pos 2 + Pos 5</option>
+            <option value="4+5">Pos 4 + Pos 5</option>
+            <option value="any_lane_duo">Any lane duo</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="tilt">Tilt risk</label>
+          <select id="tilt" class="select">
+            <option value="any">Any</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="controlRow2">
+        <label class="check">
+          <input id="onlyNew" type="checkbox" />
+          <span>Prefer unseen cards (session)</span>
+        </label>
+
+        <div class="rightActions">
+          <button id="btnPickFromList" class="btn">📚 Browse list</button>
+          <button id="btnFavorites" class="btn">⭐ Favorites</button>
+          <button id="btnReset" class="btn danger">↩ Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel cardArea">
+      <div class="cardHeader">
+        <div class="pill" id="pillMeta">Loading…</div>
+        <div class="cardActions">
+          <button id="btnFav" class="btn">⭐ Save</button>
+          <button id="btnCopy" class="btn">📋 Copy</button>
+          <button id="btnShare" class="btn">🔗 Share</button>
+          <button id="btnExport" class="btn">🖼 Export</button>
+        </div>
+      </div>
+
+      <article class="card" id="card">
+        <div class="cardTop">
+          <div class="cardName" id="cardName">—</div>
+          <div class="cardTagline" id="cardTagline">—</div>
+        </div>
+
+        <div class="grid">
+          <div class="kv">
+            <div class="k">Roles</div>
+            <div class="v" id="cardRoles">—</div>
+          </div>
+          <div class="kv">
+            <div class="k">Mode</div>
+            <div class="v" id="cardMode">—</div>
+          </div>
+          <div class="kv">
+            <div class="k">Tilt risk</div>
+            <div class="v" id="cardTilt">—</div>
+          </div>
+          <div class="kv">
+            <div class="k">Difficulty</div>
+            <div class="v" id="cardDiff">—</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="h">Core rule</div>
+          <div class="p" id="cardRule">—</div>
+        </div>
+
+        <div class="section">
+          <div class="h">Win condition</div>
+          <div class="p" id="cardWin">—</div>
+        </div>
+
+        <div class="section">
+          <div class="h">Why it works</div>
+          <div class="p" id="cardWhy">—</div>
+        </div>
+
+        <div class="section">
+          <div class="h">Optional spice</div>
+          <div class="p" id="cardSpice">—</div>
+        </div>
+
+        <div class="footerNote" id="cardWarning">—</div>
+      </article>
+
+      <div class="smallHint">
+        Tip: hit <kbd>R</kbd> to draw, <kbd>F</kbd> to favorite, <kbd>C</kbd> to copy.
+      </div>
+    </section>
+
+    <section class="panel listArea hidden" id="listPanel">
+      <div class="listHeader">
+        <div class="listTitle" id="listTitle">Browse</div>
+        <button id="btnCloseList" class="btn">✖ Close</button>
+      </div>
+      <div id="list" class="list"></div>
+    </section>
+
+    <canvas id="exportCanvas" class="hidden" width="1200" height="675"></canvas>
+  </main>
+
+  <footer class="footer">
+    <span>Built for duo queue. Don’t grief. Don’t flame. Be unhinged responsibly.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
